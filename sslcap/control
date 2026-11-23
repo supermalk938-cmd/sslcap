@@ -1,0 +1,9 @@
+Package: com.reger.sslcap
+Name: SSLCap
+Version: 0.1.0
+Architecture: iphoneos-arm64
+Description: NSURLSession interception + request/response dump for Gmail/IG/FB. Pair with SSLKillSwitch3 and Choicy.
+Maintainer: reger
+Author: reger
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000) | ellekit, firmware (>= 14.0)

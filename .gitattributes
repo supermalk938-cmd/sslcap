@@ -1,0 +1,8 @@
+# Усі файли — LF, щоб Theos/make/bash на Linux-runner'і не плутались
+* text=auto eol=lf
+*.sh text eol=lf
+Makefile text eol=lf
+*.xm text eol=lf
+*.m  text eol=lf
+*.plist text eol=lf
+*.yml text eol=lf

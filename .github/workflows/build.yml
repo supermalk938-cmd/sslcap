@@ -1,0 +1,43 @@
+name: Build sslcap.deb
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: APT deps
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q build-essential fakeroot rsync curl perl git zip unzip xz-utils
+
+      - name: Clone Theos
+        run: |
+          git clone --recursive --depth 1 https://github.com/theos/theos.git /opt/theos
+          echo "THEOS=/opt/theos" >> $GITHUB_ENV
+
+      - name: Fetch iPhoneOS 15.5 SDK
+        run: |
+          cd /opt/theos/sdks
+          curl -sL -o sdks.tar.gz https://github.com/theos/sdks/archive/refs/heads/master.tar.gz
+          tar -xzf sdks.tar.gz --strip-components=1 sdks-master/iPhoneOS15.5.sdk
+          rm -f sdks.tar.gz
+          ls -d iPhoneOS15.5.sdk
+
+      - name: Build sslcap
+        env:
+          THEOS: /opt/theos
+        run: |
+          cd sslcap
+          make package FINALPACKAGE=1
+
+      - name: Upload .deb
+        uses: actions/upload-artifact@v4
+        with:
+          name: sslcap-deb
+          path: sslcap/packages/*.deb
+          if-no-files-found: error

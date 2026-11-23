@@ -1,0 +1,11 @@
+# Theos build artifacts
+sslcap/.theos/
+sslcap/packages/
+sslcap/obj/
+# Local dumps
+dumps/
+# Editors
+.vscode/
+.idea/
+*.swp
+.DS_Store

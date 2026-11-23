@@ -1,0 +1,10 @@
+{
+    Filter = {
+        Bundles = (
+            "com.google.Gmail"
+        );
+        // Пізніше (Етап 5) додамо:
+        //   "com.burbn.instagram",
+        //   "com.facebook.Facebook"
+    };
+}
